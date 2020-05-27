@@ -18,10 +18,16 @@ export class TaskList extends React.Component {
 		e.target.state = e.target.value.trim().length ? "valid" : "invalid";
 	}
 	createTask(e) {
-		if (e.key == "Enter" && e.target.state == "valid") {
-			const task = e.target.value;
-			e.target.value = "";
+		if (
+			e.key == "Enter" &&
+			e.target.state == "valid" &&
+			e.target.value.trim() != ""
+		) {
+			const task = e.target.value.trim();
+			// e.target.value = ""; No hace falta
 			this.setState({ tasklist: this.state.tasklist.concat([task]) });
+		} else if (e.key == "Enter" && e.target.state == "invalid") {
+			alert("¡Algo va mal! Incluye texto en el campo");
 		}
 	}
 	deleteTask(item) {
