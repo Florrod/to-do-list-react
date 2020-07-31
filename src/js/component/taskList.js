@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react";
 import PropTypes from "prop-types";
 import "../../styles/index.scss";
+
 export class TaskList extends React.Component {
 	constructor(props) {
 		super(props);
@@ -9,11 +10,12 @@ export class TaskList extends React.Component {
 			input: "",
 			tasklist: [
 				//{ description: "buy some milk" },
-				//{ description: "play mario kart" }
+				//{ descript ion: "play mario kart"}
 			]
 		};
 		this.deleteTask = this.deleteTask.bind(this);
 	}
+
 	checkInput(e) {
 		e.target.state = e.target.value.trim().length ? "valid" : "invalid";
 	}
@@ -24,12 +26,14 @@ export class TaskList extends React.Component {
 			e.target.value.trim() != ""
 		) {
 			const task = e.target.value.trim();
-			// e.target.value = ""; No hace falta
-			this.setState({ tasklist: this.state.tasklist.concat([task]) });
+			this.setState({
+				tasklist: this.state.tasklist.concat([task])
+			});
 		} else if (e.key == "Enter" && e.target.state == "invalid") {
-			alert("¡Algo va mal! Incluye texto en el campo");
+			alert("No se permite meter espacios");
 		}
 	}
+
 	deleteTask(item) {
 		const newTaskList = this.state.tasklist.filter(tasklist => {
 			return tasklist !== item; //comparamos cada item que queremos eliminar con cada item del array "messages".
@@ -51,14 +55,15 @@ export class TaskList extends React.Component {
 		this.setState({ tasklist: this.state.tasklist });
 		console.log(this.state.tasklist);
     };
+    
     */
 	render() {
 		return (
 			<div className="container d-flex justify-content-center">
 				<ul className="listContainer">
-					<h1 className="tittle text-center"> To do List</h1>
+					<h1 className="display-2"> ToDo List</h1>
 					<input
-						className="placeholder m-3"
+						className="imput mt-3 w-100"
 						types="text"
 						id="newTask"
 						placeholder="What is new?"
@@ -79,7 +84,7 @@ export class TaskList extends React.Component {
 							/>
 						</li>
 					))}
-					<div className="taskCounter mt-2">
+					<div className="taskCounter">
 						You have{" "}
 						<strong className="length">
 							{this.state.tasklist.length} tasks to do{" "}

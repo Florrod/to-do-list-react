@@ -12,4 +12,10 @@ import "../styles/index.scss";
 import { TaskList } from "./component/taskList";
 
 //render your react application
-ReactDOM.render(<TaskList />, document.querySelector("#app"));
+ReactDOM.render(
+	<div>
+		<TaskList />
+	</div>,
+	document.querySelector("#app")
+);
+//ReactDOM.render(<TaskList />, document.querySelector("#app"));
